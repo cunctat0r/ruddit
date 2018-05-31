@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
+<div class="page-header">
+  <%= link_to @link.name, @link.url %><br/>
+  <small>
+    Submitted by <%= @link.user.email %> <%= time_ago_in_words(@link.created_at) %> ago.
+  </small>  
+</div>
+<div class="btn-group pull-right">
+  <%= link_to 'Back', links_path, class: 'btn btn-primary' %>
+<% if @link.user == current_user %>
+  <%= link_to 'Edit', edit_link_path(@link), class: 'btn' %>
+  <%= link_to 'Destroy', @link, class: 'btn', method: :delete, data: { confirm: 'Are you sure?' }  %>
+<% end %>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @link.name %>
-</p>
-
-<p>
-  <strong>Url:</strong>
-  <%= @link.url %>
-</p>
-
-<%= link_to 'Edit', edit_link_path(@link) %> |
-<%= link_to 'Back', links_path %>
