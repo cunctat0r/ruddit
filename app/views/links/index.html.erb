@@ -12,6 +12,16 @@
         </small>
         </p>
       </div>
+      <div class="btn btn-group ml-auto">
+        <div class="btn btn-default">
+          <%= link_to 'Like', like_link_path(link), method: :put %>
+          <%= link.get_likes.size %>
+        </div>
+        <div class="btn btn-default">
+          <%= link_to 'Dislike', dislike_link_path(link), method: :put %>
+          <%= link.get_dislikes.size %>
+        </div>
+      </div>
     <% end %>
 
 <br>
