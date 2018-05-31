@@ -2,27 +2,29 @@
 
 <h1>Links</h1>
 
-    <% @links.each do |link| %>
-      <div class="link row clearfix">
-        <p>
-        <%= link_to link.name, link %>
-        <br/>
-        <small>
-          Submitted by <%= link.user.email %> <%= time_ago_in_words(link.created_at) %> ago.
-        </small>
-        </p>
-      </div>
-      <div class="btn btn-group ml-auto">
-        <div class="btn btn-default">
-          <%= link_to 'Like', like_link_path(link), method: :put %>
-          <%= link.get_likes.size %>
+<% @links.each do |link| %>
+  <div class="link row clearfix rounded bg-light mt-1">
+          <div>
+            <p>
+            <%= link_to link.name, link %>
+            <br/>
+            <small>
+              Submitted by <%= link.user.email %> <%= time_ago_in_words(link.created_at) %> ago.
+            </small>
+            </p>
+          </div>
+          <div class="btn btn-group ml-auto">
+            <div class="btn btn-default">
+              <%= link_to fa_icon('thumbs-up'), like_link_path(link), method: :put %>
+              <%= link.get_likes.size %>
+            </div>
+            <div class="btn btn-default">
+              <%= link_to fa_icon('thumbs-down'), dislike_link_path(link), method: :put %>
+              <%= link.get_dislikes.size %>
+            </div>
+          </div>
         </div>
-        <div class="btn btn-default">
-          <%= link_to 'Dislike', dislike_link_path(link), method: :put %>
-          <%= link.get_dislikes.size %>
-        </div>
-      </div>
-    <% end %>
+<% end %>
 
 <br>
   <%= link_to 'New Link', new_link_path, class: 'btn btn-primary' %>
