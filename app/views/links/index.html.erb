@@ -4,14 +4,15 @@
 
     <% @links.each do |link| %>
       <div class="link row clearfix">
+        <p>
         <%= link_to link.name, link %>
-        <br>
+        <br/>
         <small>
           Submitted by <%= link.user.email %> <%= time_ago_in_words(link.created_at) %> ago.
         </small>
+        </p>
       </div>
     <% end %>
 
 <br>
-
-<%= link_to 'New Link', new_link_path %>
+  <%= link_to 'New Link', new_link_path, class: 'btn btn-primary' %>
